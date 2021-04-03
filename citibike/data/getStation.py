@@ -12,11 +12,18 @@ stationFilter = raw2020.drop_duplicates(subset='start station id')
 stations = {}
 
 for index, row in stationFilter.iterrows():
-    stations[row['start station id']] = {
-        'name': row['start station name'],
-        'latitude': row['start station latitude'],
-        'longitude': row['start station longitude']
-    }
+    try: 
+        stations[int(row['start station id'])] = {
+            'name': row['start station name'],
+            'latitude': float(row['start station latitude']),
+            'longitude': float(row['start station longitude'])
+        }
+    except:
+        continue
+
+# for i in stations:
+#     print(i, stations[i])
+# print(len(stations.keys()))
 
 f = open('stations.json', 'w')
 f.write(json.dumps(stations))
