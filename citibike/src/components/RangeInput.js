@@ -36,6 +36,7 @@ export default function RangeInput({
   animationSpeed,
   onChange,
   formatLabel,
+  togglePlaying,
 }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [animation] = useState({});
@@ -64,7 +65,10 @@ export default function RangeInput({
       <Button
         color="secondary"
         disabled={!isButtonEnabled}
-        onClick={() => setIsPlaying(!isPlaying)}
+        onClick={() => {
+          setIsPlaying(!isPlaying);
+          togglePlaying();
+        }}
       >
         {isPlaying ? <PauseIcon title="Stop" /> : <PlayIcon title="Animate" />}
       </Button>

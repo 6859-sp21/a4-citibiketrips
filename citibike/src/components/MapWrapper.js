@@ -32,12 +32,12 @@ class MapWrapper extends Component {
       trips: [],
       loading: true,
       time_filter: [0, 1439],
+      playing: false,
     };
   }
 
   setViewState = (viewState) => {
     this.setState({ viewState });
-    console.log(viewState);
   };
 
   setFilter = (filter) => {
@@ -62,6 +62,12 @@ class MapWrapper extends Component {
       ...destination,
       transitionDuration: 2000,
       transitionInterpolator: new FlyToInterpolator(),
+    });
+  };
+
+  togglePlaying = () => {
+    this.setState({
+      playing: !this.state.playing,
     });
   };
 
@@ -115,14 +121,16 @@ class MapWrapper extends Component {
           toggle={this.state.toggle}
           time_filter={this.state.time_filter}
           loading={this.state.loading}
+          isPLaying={this.state.playing}
         />
         <RangeInput
           min={0}
           max={1439}
           value={this.state.time_filter}
-          animationSpeed={1}
+          animationSpeed={20}
           formatLabel={this.formatLabel}
           onChange={this.setFilter}
+          togglePlaying={this.togglePlaying}
         />
       </div>
     );

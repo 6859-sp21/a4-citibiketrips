@@ -17,6 +17,7 @@ export default function Map({
   trips,
   time_filter,
   loading,
+  isPlaying,
 }) {
   const initCounters = () => {
     const zeros = {};
@@ -107,20 +108,17 @@ export default function Map({
         // console.log(object);
       },
       autoHighlight: false,
-      transitions: {
-        getRadius: 250,
-      },
       updateTriggers: {
         getFillColor: [counters],
         getElevation: [counters],
       },
       transitions: {
         getFillColor: {
-          duration: 500,
+          duration: isPlaying ? 0 : 500,
           easing: easeCubicInOut,
         },
         getElevation: {
-          duration: 500,
+          duration: isPlaying ? 0 : 500,
           easing: easeCubicInOut,
         },
       },
