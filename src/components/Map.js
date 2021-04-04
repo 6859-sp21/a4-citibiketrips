@@ -3,9 +3,10 @@ import ReactMapGL from "react-map-gl";
 import { ArcLayer, ColumnLayer, DeckGL, ScatterplotLayer } from "deck.gl";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import { easeCubicInOut } from "d3";
-import mapboxgl from "mapbox-gl/dist/mapbox-gl";
-import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker";
-mapboxgl.workerClass = MapboxWorker;
+import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 // please be nice and don't misuse this token. Thanks
 const MAPBOX_TOKEN =
