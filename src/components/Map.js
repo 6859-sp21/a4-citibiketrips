@@ -111,6 +111,7 @@ export default function Map({
       onClick: ({ object }) => {
         // console.log(object);
       },
+      visible: !loading,
       autoHighlight: false,
       updateTriggers: {
         getFillColor: [counters],

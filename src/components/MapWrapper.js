@@ -6,6 +6,7 @@ import { list_stations } from "../list_stations";
 import { csv } from "d3";
 import trip_data from "./all2020.csv";
 import RangeInput from "./RangeInput";
+import { CircularProgress } from "@material-ui/core";
 
 const nyc = {
   longitude: -73.9544312807859,
@@ -111,6 +112,15 @@ class MapWrapper extends Component {
   render() {
     return (
       <div>
+        {/* <div
+          ref={loadingRef}
+          style={{ position: "absolute", top: "50%", left: "50%", zIndex: 1 }}
+        />
+        {this.state.loading ? (
+          <CircularProgress color="secondary" containerRef={loadingRef} />
+        ) : (
+          <div />
+        )} */}
         <Map
           width="100vw"
           height="100vh"
@@ -122,7 +132,7 @@ class MapWrapper extends Component {
           time_filter={this.state.time_filter}
           loading={this.state.loading}
           isPLaying={this.state.playing}
-        />
+        ></Map>
         <RangeInput
           min={0}
           max={1439}
