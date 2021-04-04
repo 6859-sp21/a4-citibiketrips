@@ -6,7 +6,7 @@ https://6859-sp21.github.io/a4-citibiketrips/
 
 Like the BlueBikes system on the Boston and Cambridge, New York City also has a bikes-for-rent service to help its citizens navigate within and around the city. The infrastructure is sponsored by Citi bank, and thus their service is named Citibikes.
 
-The service produces a lot of valuable data about how the citizens move around. Specifically, the origin, destination, time of day, and ride duration are all quite valuable. Citibikes publically provides this information at https://www.citibikenyc.com/system-data.
+The service produces a lot of valuable data about how the citizens move around. Specifically, the origin, destination, time of day, and ride duration are all quite valuable. Citibikes publicly provides this information at https://www.citibikenyc.com/system-data.
 
 # Questions
 
