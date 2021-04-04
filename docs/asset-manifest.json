@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/a4-citibiketrips/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/a4-citibiketrips/static/js/main.30245b40.chunk.js",
+    "main.js.map": "/a4-citibiketrips/static/js/main.30245b40.chunk.js.map",
+    "runtime-main.js": "/a4-citibiketrips/static/js/runtime-main.e2ccb8b1.js",
+    "runtime-main.js.map": "/a4-citibiketrips/static/js/runtime-main.e2ccb8b1.js.map",
+    "static/js/2.5d3d1575.chunk.js": "/a4-citibiketrips/static/js/2.5d3d1575.chunk.js",
+    "static/js/2.5d3d1575.chunk.js.map": "/a4-citibiketrips/static/js/2.5d3d1575.chunk.js.map",
+    "static/js/3.3ede304b.chunk.js": "/a4-citibiketrips/static/js/3.3ede304b.chunk.js",
+    "static/js/3.3ede304b.chunk.js.map": "/a4-citibiketrips/static/js/3.3ede304b.chunk.js.map",
+    "index.html": "/a4-citibiketrips/index.html",
+    "static/css/main.9d5b29c0.chunk.css.map": "/a4-citibiketrips/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.5d3d1575.chunk.js.LICENSE.txt": "/a4-citibiketrips/static/js/2.5d3d1575.chunk.js.LICENSE.txt",
+    "static/media/all2020.6942c60b.csv": "/a4-citibiketrips/static/media/all2020.6942c60b.csv"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e2ccb8b1.js",
+    "static/js/2.5d3d1575.chunk.js",
+    "static/css/main.9d5b29c0.chunk.css",
+    "static/js/main.30245b40.chunk.js"
+  ]
+}
