@@ -25,6 +25,19 @@ for index, row in stationFilter.iterrows():
 #     print(i, stations[i])
 # print(len(stations.keys()))
 
-f = open('stations.json', 'w')
-f.write(json.dumps(stations))
-f.close()
+# stations as a dict
+# f = open('stations.json', 'w')
+# f.write(json.dumps(stations))
+# f.close()
+
+# stations as a list
+# list_stations = []
+# for i in stations:
+#     temp = stations[i]
+#     temp['id'] = i
+#     list_stations.append(temp)
+
+# f = open('list_stations.json', 'w')
+# f.write(json.dumps(list_stations))
+# f.close()
+
