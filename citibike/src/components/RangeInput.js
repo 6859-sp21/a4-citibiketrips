@@ -1,35 +1,42 @@
 /* global requestAnimationFrame, cancelAnimationFrame */
-import React, {useEffect, useState} from 'react';
-import {styled, withStyles} from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Button from '@material-ui/core/IconButton';
-import PlayIcon from '@material-ui/icons/PlayArrow';
-import PauseIcon from '@material-ui/icons/Pause';
+import React, { useEffect, useState } from "react";
+import { styled, withStyles } from "@material-ui/core/styles";
+import Slider from "@material-ui/core/Slider";
+import Button from "@material-ui/core/IconButton";
+import PlayIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
 
-const PositionContainer = styled('div')({
-  position: 'absolute',
+const PositionContainer = styled("div")({
+  position: "absolute",
   zIndex: 1,
-  bottom: '40px',
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  bottom: "40px",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const SliderInput = withStyles({
   root: {
     marginLeft: 12,
-    width: '40%'
+    width: "40%",
   },
   valueLabel: {
-    '& span': {
-      background: 'none',
-      color: '#000'
-    }
-  }
+    "& span": {
+      background: "none",
+      color: "#ff0000",
+    },
+  },
 })(Slider);
 
-export default function RangeInput({min, max, value, animationSpeed, onChange, formatLabel}) {
+export default function RangeInput({
+  min,
+  max,
+  value,
+  animationSpeed,
+  onChange,
+  formatLabel,
+}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [animation] = useState({});
 
@@ -54,15 +61,20 @@ export default function RangeInput({min, max, value, animationSpeed, onChange, f
 
   return (
     <PositionContainer>
-      <Button color="primary" disabled={!isButtonEnabled} onClick={() => setIsPlaying(!isPlaying)}>
+      <Button
+        color="secondary"
+        disabled={!isButtonEnabled}
+        onClick={() => setIsPlaying(!isPlaying)}
+      >
         {isPlaying ? <PauseIcon title="Stop" /> : <PlayIcon title="Animate" />}
       </Button>
       <SliderInput
+        color="secondary"
         min={min}
         max={max}
         value={value}
         onChange={(event, newValue) => onChange(newValue)}
-        valueLabelDisplay="auto"
+        valueLabelDisplay="on"
         valueLabelFormat={formatLabel}
       />
     </PositionContainer>

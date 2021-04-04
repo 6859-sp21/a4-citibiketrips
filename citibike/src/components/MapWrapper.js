@@ -14,8 +14,8 @@ const nyc = {
 };
 
 const jc = {
-  latitude: 40.72601247251457,
-  longitude: -74.06792345744834,
+  latitude: 40.725779443680345,
+  longitude: -74.06189375312678,
   zoom: 12.57,
   bearing: 0.8015740858150702,
   pitch: 40.9,
@@ -31,23 +31,26 @@ class MapWrapper extends Component {
       stations: list_stations,
       trips: [],
       loading: true,
-      time_filter: [0,1440]
+      time_filter: [0, 1439],
     };
   }
 
   setViewState = (viewState) => {
     this.setState({ viewState });
+    console.log(viewState);
   };
 
   setFilter = (filter) => {
     this.setState({
-      time_filter: filter
-    })
-  }
+      time_filter: filter,
+    });
+  };
 
   formatLabel = (t) => {
-    return `${Math.floor(t/60)}:${t%60}`
-  }
+    const hour = ("00" + Math.floor(t / 60)).slice(-2);
+    const minutes = ("00" + (t % 60)).slice(-2);
+    return `${hour}:${minutes}`;
+  };
 
   handleChangeViewState = ({ viewState }) => {
     this.setViewState(viewState);
@@ -79,7 +82,8 @@ class MapWrapper extends Component {
         end_position: [+d["end station longitude"], +d["end station latitude"]],
       };
     }).then((data) => {
-      // console.log(data);
+      const start_cut = new Date("01-01-2020");
+      const stop_cut = new Date("05-01-2020");
       const filter_data = data.filter(
         (d) =>
           d.start_position[0] != null &&
@@ -87,7 +91,9 @@ class MapWrapper extends Component {
           d.end_position[0] != null &&
           d.end_position[1] != null &&
           d.start_id in this.state.station_info &&
-          d.end_id in this.state.station_info
+          d.end_id in this.state.station_info &&
+          new Date(d.start_datetime) > start_cut &&
+          new Date(d.start_datetime) < stop_cut
       );
       this.setState({
         trips: filter_data,
@@ -108,10 +114,11 @@ class MapWrapper extends Component {
           trips={this.state.trips}
           toggle={this.state.toggle}
           time_filter={this.state.time_filter}
+          loading={this.state.loading}
         />
         <RangeInput
           min={0}
-          max={1440}
+          max={1439}
           value={this.state.time_filter}
           animationSpeed={1}
           formatLabel={this.formatLabel}
