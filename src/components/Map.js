@@ -3,6 +3,9 @@ import ReactMapGL from "react-map-gl";
 import { ArcLayer, ColumnLayer, DeckGL, ScatterplotLayer } from "deck.gl";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import { easeCubicInOut } from "d3";
+import mapboxgl from "mapbox-gl/dist/mapbox-gl";
+import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker";
+mapboxgl.workerClass = MapboxWorker;
 
 // please be nice and don't misuse this token. Thanks
 const MAPBOX_TOKEN =
