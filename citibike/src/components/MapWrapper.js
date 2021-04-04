@@ -15,8 +15,8 @@ const nyc = {
 
 const jc = {
   latitude: 40.725779443680345,
-  longitude: -74.06189375312678,
-  zoom: 12.57,
+  longitude: -74.05589375312678,
+  zoom: 13,
   bearing: 0.8015740858150702,
   pitch: 40.9,
 };
@@ -31,7 +31,7 @@ class MapWrapper extends Component {
       stations: list_stations,
       trips: [],
       loading: true,
-      time_filter: [0, 1439],
+      time_filter: [600, 780],
       playing: false,
     };
   }
