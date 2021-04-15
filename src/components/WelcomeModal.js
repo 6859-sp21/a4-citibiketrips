@@ -57,6 +57,7 @@ export default function WelcomeModal({ loading }) {
               Citibikes bike share system throughout the day.
             </p>
             <p>Where do they come from? Where do they go? Let's find out!</p>
+            <p>Data courtesy of CitiBike: https://www.citibikenyc.com/system-data</p>
 
             {loading ? (
               <div>

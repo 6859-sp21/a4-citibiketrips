@@ -24,7 +24,6 @@ export default function Legend({ counts, resetFilter }) {
   const CenterContainer = styled("div")({
     color: "#dddddd",
     borderColor: "rgb(72,72,72)",
-    boarder: "1px",
     padding: "1.5em",
     position: "",
     zIndex: 1,
@@ -141,6 +140,7 @@ export default function Legend({ counts, resetFilter }) {
                 <li>The lock icon toggles the fixed/free filter size.</li>
                 <li>The filter can be reset with the "Reset Filter" button.</li>
               </ul>
+              <p>Data courtesy of CitiBike: https://www.citibikenyc.com/system-data</p>
             </div>
           </Fade>
         </Modal>
