@@ -49,15 +49,15 @@ export default function WelcomeModal({ loading }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">
-              Welcome to Visualizing Citibikes!
-            </h2>
+            <h2 id="transition-modal-title">Welcome to Citibike Trips!</h2>
             <p id="transition-modal-description">
               Explore how residents of Jersey City (neighbors of NYC) use the
               Citibikes bike share system throughout the day.
             </p>
             <p>Where do they come from? Where do they go? Let's find out!</p>
-            <p>Data courtesy of CitiBike: https://www.citibikenyc.com/system-data</p>
+            <p>
+              Data courtesy of CitiBike: https://www.citibikenyc.com/system-data
+            </p>
 
             {loading ? (
               <div>
