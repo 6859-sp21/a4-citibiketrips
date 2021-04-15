@@ -1,5 +1,5 @@
 /* global requestAnimationFrame, cancelAnimationFrame */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { styled, withStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/IconButton";
@@ -38,7 +38,7 @@ const SliderInput = withStyles({
   valueLabel: {
     "& span": {
       background: "rgb(75,75,75)",
-      color: "#ff0000",
+      color: "#ffffff",
     },
   },
 })(Slider);

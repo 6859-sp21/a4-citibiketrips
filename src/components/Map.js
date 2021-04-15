@@ -4,6 +4,7 @@ import { ArcLayer, ColumnLayer, DeckGL, ScatterplotLayer } from "deck.gl";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import { easeCubicInOut } from "d3";
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
+import Legend from "./Legend";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -22,6 +23,8 @@ export default function Map({
   time_filter,
   loading,
   isPlaying,
+  setHighlight,
+  resetFilter,
 }) {
   const initCounters = () => {
     const zeros = {};
@@ -33,12 +36,14 @@ export default function Map({
 
   const filterChange = () => {
     const update = initCounters();
+    let highlightCounter = 0;
     // const update = initCounters();
     trips.forEach((element) => {
       if (
         element.start_minutes >= time_filter[0] &&
         element.start_minutes <= time_filter[1]
       ) {
+        highlightCounter += 1;
         if (selectedStation === undefined) {
           // get net flow if nothing is selected
           update[element.end_id] += 1;
@@ -57,19 +62,23 @@ export default function Map({
     });
     // console.log(update);
     // if (init) setChange(change + 1);
+    update["highlight"] = highlightCounter;
     return update;
   };
 
   const red = [255, 0, 0];
   const green = [0, 255, 0];
-  const neutral = [255, 140, 0];
+  const neutral = [255, 0, 0, 70];
 
-  const [arcToggle, setArcToggle] = React.useState(true);
   const [selectedStation, setSelectedStation] = React.useState(undefined);
   const [counters, setCounters] = React.useState(initCounters());
+  const [highlightCount, setHighlightCount] = React.useState(0);
 
   React.useEffect(() => {
-    setCounters(filterChange());
+    const res = filterChange();
+    console.log();
+    setCounters(res);
+    setHighlightCount(res["highlight"]);
   }, [selectedStation, loading, time_filter]);
 
   function getTooltip({ object }) {
@@ -87,7 +96,7 @@ export default function Map({
       data: stations,
       pickable: true,
       extrude: true,
-      opacity: 0.8,
+      opacity: 0.6,
       radiusMaxPixels: 15,
       radius: 50,
       getPosition: (d) => [d.longitude, d.latitude],
@@ -160,6 +169,7 @@ export default function Map({
 
   return (
     <div>
+      <Legend counts={highlightCount} resetFilter={resetFilter} />
       <ReactMapGL
         mapboxApiAccessToken={MAPBOX_TOKEN}
         width={width}

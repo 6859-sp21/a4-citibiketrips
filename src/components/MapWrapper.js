@@ -6,7 +6,7 @@ import { list_stations } from "../list_stations";
 import { csv } from "d3";
 import trip_data from "./all2020.csv";
 import RangeInput from "./RangeInput";
-import { CircularProgress } from "@material-ui/core";
+import WelcomeModal from "./WelcomeModal";
 
 const nyc = {
   longitude: -73.9544312807859,
@@ -27,13 +27,15 @@ class MapWrapper extends Component {
     super(props);
 
     this.state = {
-      viewState: jc,
+      viewState: nyc,
       station_info: station_info,
       stations: list_stations,
       trips: [],
       loading: true,
       time_filter: [600, 780],
       playing: false,
+      highlightStation: undefined,
+      highlightCount: 0,
     };
   }
 
@@ -44,6 +46,19 @@ class MapWrapper extends Component {
   setFilter = (filter) => {
     this.setState({
       time_filter: filter,
+    });
+  };
+
+  resetFilter = () => {
+    this.setState({
+      time_filter: [600, 780],
+    });
+  };
+
+  setHighlight = (name, count) => {
+    this.setState({
+      highlightStation: name,
+      highlightCount: count,
     });
   };
 
@@ -88,39 +103,35 @@ class MapWrapper extends Component {
         ],
         end_position: [+d["end station longitude"], +d["end station latitude"]],
       };
-    }).then((data) => {
-      const start_cut = new Date("01-01-2020");
-      const stop_cut = new Date("05-01-2020");
-      const filter_data = data.filter(
-        (d) =>
-          d.start_position[0] != null &&
-          d.start_position[1] != null &&
-          d.end_position[0] != null &&
-          d.end_position[1] != null &&
-          d.start_id in this.state.station_info &&
-          d.end_id in this.state.station_info &&
-          new Date(d.start_datetime) > start_cut &&
-          new Date(d.start_datetime) < stop_cut
-      );
-      this.setState({
-        trips: filter_data,
-        loading: false,
+    })
+      .then((data) => {
+        const start_cut = new Date("01-01-2020");
+        const stop_cut = new Date("05-01-2020");
+        const filter_data = data.filter(
+          (d) =>
+            d.start_position[0] != null &&
+            d.start_position[1] != null &&
+            d.end_position[0] != null &&
+            d.end_position[1] != null &&
+            d.start_id in this.state.station_info &&
+            d.end_id in this.state.station_info &&
+            new Date(d.start_datetime) > start_cut &&
+            new Date(d.start_datetime) < stop_cut
+        );
+        this.setState({
+          trips: filter_data,
+          loading: false,
+        });
+      })
+      .then(() => {
+        this.handleFlyTo(jc);
       });
-    });
   }
 
   render() {
     return (
       <div>
-        {/* <div
-          ref={loadingRef}
-          style={{ position: "absolute", top: "50%", left: "50%", zIndex: 1 }}
-        />
-        {this.state.loading ? (
-          <CircularProgress color="secondary" containerRef={loadingRef} />
-        ) : (
-          <div />
-        )} */}
+        <WelcomeModal loading={this.state.loading} />
         <Map
           width="100vw"
           height="100vh"
@@ -131,7 +142,8 @@ class MapWrapper extends Component {
           toggle={this.state.toggle}
           time_filter={this.state.time_filter}
           loading={this.state.loading}
-          isPLaying={this.state.playing}
+          isPlaying={this.state.playing}
+          resetFilter={this.resetFilter}
         ></Map>
         <RangeInput
           min={0}
