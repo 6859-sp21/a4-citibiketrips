@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { styled, withStyles, makeStyles } from "@material-ui/core/styles";
+import { styled, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";

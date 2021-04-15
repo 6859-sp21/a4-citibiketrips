@@ -1,6 +1,6 @@
 import React from "react";
 import ReactMapGL from "react-map-gl";
-import { ArcLayer, ColumnLayer, DeckGL, ScatterplotLayer } from "deck.gl";
+import { ArcLayer, ColumnLayer, DeckGL } from "deck.gl";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import { easeCubicInOut } from "d3";
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
@@ -28,7 +28,7 @@ export default function Map({
 }) {
   const initCounters = () => {
     const zeros = {};
-    stations.map((s) => {
+    stations.forEach((s) => {
       zeros[s.id] = 0;
     });
     return zeros;

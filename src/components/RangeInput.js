@@ -1,4 +1,3 @@
-/* global requestAnimationFrame, cancelAnimationFrame */
 import React, { useState } from "react";
 import { styled, withStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
