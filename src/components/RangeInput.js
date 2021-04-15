@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled, withStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/IconButton";
@@ -45,6 +45,10 @@ const SliderInput = withStyles({
 export default function RangeInput({ min, max, value, onChange, formatLabel }) {
   const [lock, setLock] = useState(true);
   const [span, setSpan] = useState(value[1] - value[0]);
+
+  useEffect(() => {
+    setSpan(value[1] - value[0]);
+  }, value);
 
   const localOnChange = (newValue) => {
     let updateValue = [value[0], value[1]];
