@@ -55,6 +55,10 @@ class MapWrapper extends Component {
     });
   };
 
+  resetView = () => {
+    this.handleFlyTo(jc);
+  };
+
   setHighlight = (name, count) => {
     this.setState({
       highlightStation: name,
@@ -76,7 +80,7 @@ class MapWrapper extends Component {
     this.setViewState({
       ...this.state.viewState,
       ...destination,
-      transitionDuration: 2000,
+      transitionDuration: 1500,
       transitionInterpolator: new FlyToInterpolator(),
     });
   };
@@ -144,6 +148,7 @@ class MapWrapper extends Component {
           loading={this.state.loading}
           isPlaying={this.state.playing}
           resetFilter={this.resetFilter}
+          resetView={this.resetView}
         ></Map>
         <RangeInput
           min={0}

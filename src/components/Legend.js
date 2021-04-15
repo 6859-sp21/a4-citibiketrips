@@ -7,7 +7,7 @@ import Fade from "@material-ui/core/Fade";
 import IconButton from "@material-ui/core/IconButton";
 import IconHelp from "@material-ui/icons/Help";
 
-export default function Legend({ counts, resetFilter }) {
+export default function Legend({ counts, resetFilter, resetView }) {
   const [printCount, setPrintCount] = useState(0);
   useEffect(() => {
     setPrintCount(((counts / 75960) * 100).toFixed(2));
@@ -18,13 +18,13 @@ export default function Legend({ counts, resetFilter }) {
     zIndex: 1,
     top: "2em",
     left: "2em",
-    width: "33%",
+    width: "40%",
   });
 
   const CenterContainer = styled("div")({
     color: "#dddddd",
     borderColor: "rgb(72,72,72)",
-    padding: "1.5em",
+    padding: "1em",
     position: "",
     zIndex: 1,
     height: "100%",
@@ -88,6 +88,14 @@ export default function Legend({ counts, resetFilter }) {
             >
               Reset Filter
             </Button>
+            <Button
+              variant="contained"
+              disableElevation
+              onClick={resetView}
+              color="primary"
+            >
+              Reset View
+            </Button>
             <IconButton
               variant="contained"
               disableElevation
@@ -139,8 +147,16 @@ export default function Legend({ counts, resetFilter }) {
                 </li>
                 <li>The lock icon toggles the fixed/free filter size.</li>
                 <li>The filter can be reset with the "Reset Filter" button.</li>
+                <p></p>
+                <li>
+                  The view of the map can be reset to the initial using the
+                  "Reset View" button
+                </li>
               </ul>
-              <p>Data courtesy of CitiBike: https://www.citibikenyc.com/system-data</p>
+              <p>
+                Data courtesy of CitiBike:
+                https://www.citibikenyc.com/system-data
+              </p>
             </div>
           </Fade>
         </Modal>

@@ -25,6 +25,7 @@ export default function Map({
   isPlaying,
   setHighlight,
   resetFilter,
+  resetView,
 }) {
   const initCounters = () => {
     const zeros = {};
@@ -169,7 +170,11 @@ export default function Map({
 
   return (
     <div>
-      <Legend counts={highlightCount} resetFilter={resetFilter} />
+      <Legend
+        counts={highlightCount}
+        resetFilter={resetFilter}
+        resetView={resetView}
+      />
       <ReactMapGL
         mapboxApiAccessToken={MAPBOX_TOKEN}
         width={width}
